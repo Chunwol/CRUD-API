@@ -57,46 +57,30 @@ table {
   .bt {
 	width: 70px;
   }
-  .insert_bt {
-	width: 100px;
-	height: 40px;
-	font-size:18px;
-  }
-  .insert_bt_div{
-	width: 100px;
-	height: 40px;
-	padding: 10px;
-	margin:auto auto;
-  }
 </style>
 <body>
 
 <main>
-
 <div class="ListInput">
-	<h1>사용자 목록</h1>
-<table>
-	<tr>
-		<td>아이디</td>
-		<td>이름</td>
-		<td>수정</td>
-		<td>삭제</td>
-	</tr>
-	<% for(let user of users) { %>
-		<tr>
-			<td><%= user.userid %></td>
-			<td><%= user.name %></td>
-			<td class="bt"><button><a href="/edit/<%=user.userid%>">수정하기</a></button></td>
-			
-			<form action="/users/<%=user.userid%>?_method=DELETE" method="POST">
-				<td class="bt"><input type="submit" value="삭제하기"></input></td>
-			</form>
-		</tr>
-	<% } %>
-</table>
-<div class="insert_bt_div">
-<td><button class="insert_bt"><a href="/insert">회원가입</a></button></td>
-</div>
+	<h1>회원가입</h1>
+	<form action="/users" method="POST">
+		아이디 : 
+		<div class="Input">
+			<input type="text" name="inputID" class="inputbox" placeholder="아이디를 입력하세요.">
+		</div>
+		비밀번호 : 
+		<div class="Input">
+			<input type="text" name="inputPW" class="inputbox" placeholder="비밀번호를 입력하세요.">
+		</div>
+		이름 : 
+		<div class="Input">
+			<input type="text" name="inputName" class="inputbox" placeholder="이름을 입력하세요.">
+		</div>
+		</table>
+		<div class="Box">
+			<input type="submit" id="send" value="회원가입">
+		</div>
+	</form>
 </div>
 </main>
 </body>

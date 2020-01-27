@@ -8,6 +8,9 @@ router.get('/', function(req, res, next) {
   res.redirect("/users");
 });
 
+router.get('/insert', function(req, res, next) {
+  res.render('insert');
+});
 
 router.get('/users', function(req, res, next) {
   User.user.findAll().then( result => {
