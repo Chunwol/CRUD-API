@@ -19,7 +19,9 @@ router.get('/users', function(req, res, next) {
 
 router.post('/users', function(req, res, next) {
   let body = req.body;
-
+  if (body.inputID == '' || body.inputPW == '' || body.inputName == '') {
+    console.log("공백이 존재합니다");
+  }else{
   User.user.create({
     userid: body.inputID,
     password: body.inputPW,
@@ -30,8 +32,9 @@ router.post('/users', function(req, res, next) {
     res.redirect("/users");
   })
   .catch( err => {
-    console.log("공백이 있거나 중복된 사용자가 존재합니다.");
+    console.log("중복된 사용자가 존재합니다.");
   })
+  }
 });
 
 router.delete('/users/:id', function(req, res, next) {
@@ -67,9 +70,11 @@ router.get('/edit/:id', function(req, res, next) {
 router.put('/users/:id', function(req, res, next) {
   let  postID = req.params.id;
   let body = req.body;
-
+  if (postID == '' || body.editPW == '' || body.editName == '') {
+    console.log("공백이 존재합니다");
+  }else{
   User.user.update({
-    userid: body.editID,
+    userid: postID,
     password: body.editPW,
     name: body.editName
   },{
@@ -82,11 +87,7 @@ router.put('/users/:id', function(req, res, next) {
   .catch( err => {
     console.log("데이터 수정 실패");
   });
+}
 });
-
-
-
-
-
 
 module.exports = router;
